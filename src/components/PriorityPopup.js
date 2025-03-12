@@ -5,11 +5,11 @@ const PriorityPopup = ({ priority, title, description, officeTimings, image, ema
 
   return (
     isOpen && (
-      <div className="absolute top-[360px] right-10 w-[450px] bg-white shadow-lg border-l border-gray-300 p-6 overflow-y-auto z-50">
+      <div className="absolute top-[360px] right-8 w-[450px] bg-white shadow-lg border-l border-gray-300 p-6 overflow-y-auto z-50">
         
         {/* Top Badge */}
         <div className="absolute left-3 top-3 font-lato bg-[#2164E8] text-white text-sm font-bold px-3 pt-3 h-10 rounded-lg z-10">
-          {priority}ST PRIORITY
+          {priority} PRIORITY
         </div>
   
         {/* Close Button */}

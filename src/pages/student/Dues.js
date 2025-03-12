@@ -85,7 +85,7 @@ function Dues() {
       <Navbar/>
       <Line cost={1060}/>
       
-      <div className='ml-12 w-[1090px] mt-2 '>
+      <div className='ml-12 w-[1020px] mt-2 '>
       {cardData.map((card) => (
        <Card 
        key={card.number}
