@@ -10,6 +10,8 @@ import Superadmin from "./pages/superadmin/Superadmi";
 
 import DepartmentPage from "./pages/superadmin/DepartmentPage";
 import StudentPage from "./pages/superadmin/stdentpage";
+import LoginStudent from './pages/student/loginstudent';
+import DuesPopup from './pages/student/DuesPopup';
 const App = () => {
   return (
     <Router>
