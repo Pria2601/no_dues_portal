@@ -1,5 +1,6 @@
-import React from 'react'
-import { useState } from 'react';
+import React from 'react';
+
+import { useState, useEffect } from 'react';
 import PriorityPopup from "../../components/PriorityPopup";
 import Navbar  from '../../components/Navbar';
 import Card from '../../components/Card';
@@ -7,97 +8,50 @@ import Download from '../../components/Download';
 import Line from '../../components/Line';
 import "@fontsource/montserrat";
 import "@fontsource/lato";
+
 function Dues() {
-  const data=[
-    {priority: 1, 
-    title: "Hostel Affairs", 
-    description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, maiores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi fugiat harum repudiandae eos at accusantium odit omnis ipsum ullam! Quos.", 
-    officeTimings:"2:00pm-6:00pm", 
-    image:"/stud_aff_loc.png", 
-    email:"haboff@iitg.ac.in"},
-    {priority: 2, 
-      title: "Student Affairs", 
-      description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, maiores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi fugiat harum repudiandae eos at accusantium odit omnis ipsum ullam! Quos.", 
-      officeTimings:"2:00pm-6:00pm", 
-      image:"/stud_aff_loc.png", 
-      email:"saoff@iitg.ac.in"},
-    {priority: 3, 
-      title: "Mechanical Workshop", 
-      description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, maiores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi fugiat harum repudiandae eos at accusantium odit omnis ipsum ullam! Quos.", 
-      officeTimings:"2:00pm-6:00pm", 
-      image:"/stud_aff_loc.png", 
-      email:"mechoff@iitg.ac.in"},
-    {priority: 4, 
-      title: "Computer Centre", 
-      description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, maiores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi fugiat harum repudiandae eos at accusantium odit omnis ipsum ullam! Quos.", 
-      officeTimings:"9:00am-6:00pm", 
-      image:"/stud_aff_loc.png", 
-      email:"ccoff@iitg.ac.in"}
-  ];
-  const cardData = [
-    {
-      number: 1,
-      title: "Hostel Affairs",
-      location: "Academic Complex, 3rd Floor",
-      time: "2:00pm to 6:00pm",
-      IsLast: false,
-      nodues: 0
-    },
-    {
-      number: 2,
-      title: "Student Affairs",
-      location: "Academic Complex",
-      time: "2:00pm to 6:00pm",
-      IsLast: false,
-      nodues: 1060
-    },
-    {
-      number: 3,
-      title: "Mechanical Workshop",
-      location: "Mechanical Workshop, Near Core-5",
-      time: "2:00pm to 6:00pm",
-      IsLast: true,
-      nodues: 0
-    },
-    {
-      number: 4,
-      title: "Computer Center",
-      location: "CC Complex, Near Library",
-      time: "9:00am to 6:00pm",
-      IsLast: true,
-      nodues: 125
-    }
-  ];  
-  const [popup,setPopup]=useState(0);
-  const handlePopup= (val,open)=> {
-  if(open){
-   setPopup(val);
-  }
-  else {
-    setPopup(0);
-  }
-  }
-  console.log(popup);
-  //console.log(data[popup-1]);
+  const [data, setData] = useState([]);
+  const [cardData, setCardData] = useState([]);
+  const [activeCard, setActiveCard] = useState(null);
+  const [popup, setPopup] = useState(0);
+
+  // Fetch JSON data
+  useEffect(() => {
+    fetch("/duesData.json") // If using `public/duesData.json`
+      .then((response) => response.json())
+      .then((jsonData) => {
+        setData(jsonData.data);
+        setCardData(jsonData.cardData);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  const handlePopup = (val, open) => {
+    setPopup(open ? val : 0);
+  };
+
+  // Calculate dues percentage
+  let duesSum = cardData.reduce((sum, card) => sum + card.nodues, 0);
+  let p = cardData.map((card) => (duesSum > 0 ? (card.nodues * 100) / duesSum : 0));
+
   return (
     <div className="Dues">
-      <div>
-      <Navbar/>
-      <Line cost={1060}/>
-      
-      <div className='ml-12 w-[1020px] mt-2 '>
-      {cardData.map((card) => (
-       <Card 
-       key={card.number}
-       {...card} 
-       popupFunc={handlePopup}
-        />
-       ))}
-
-      {popup && <PriorityPopup {...data[popup-1] }/> }
-      </div>
+      <Navbar />
+      <Line cost={1060} p1={p[0]} p2={p[1]} p3={p[2]} p4={p[3]} />
+      <div className="ml-12 w-[1020px] mt-2">
+        {cardData.map((card) => (
+          <Card
+            key={card.number}
+            {...card}
+            popupFunc={handlePopup}
+            activeCard={activeCard}
+            setActiveCard={setActiveCard}
+          />
+        ))}
+        {popup > 0 && <PriorityPopup {...data[popup - 1]} />}
       </div>
     </div>
   );
 }
+
 export default Dues;
