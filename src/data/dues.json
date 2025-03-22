@@ -1,0 +1,36 @@
+[
+    {
+      "id": 1,
+      "name": "Department Dues",
+      "total": 2056,
+      "approved": 86,
+      "pending": 23,
+      "more": [
+        { "name": "Mechanical Department", "approved": 86, "total": 2056, "pending": 23 ,
+        "student": [
+            { "name": "John Doe", "rollno": 86, "due":125},
+            { "name": "John Doe", "rollno": 86, "due":125},
+            { "name": "John Doe", "rollno": 86, "due":125}          ]
+        },
+        { "name": "Chemical Science Department", "approved": 86, "total": 5626, "pending": 26,"student": [
+            { "name": "John D", "rollno": 86, "due":125},
+            { "name": "John D", "rollno": 86, "due":125},
+            { "name": "John D", "rollno": 86, "due":125}          ] },
+        { "name": "Computer Science Department", "approved": 45, "total": 6326, "pending": 67 },
+        { "name": "DSAI Department", "approved": 86, "total": 5626, "pending": 26 }
+      ]
+    },
+    { "id": 2, "name": "Library Dues", "total": 5626, "approved": 86, "pending": 26,
+"more": [
+        { "name": "lib1 Department", "approved": 86, "total": 2056, "pending": 23 },
+        { "name": "lib2 Science Department", "approved": 86, "total": 5626, "pending": 26 }
+       
+      ] },
+    { "id": 3, "name": "Computer Centre", "total": 6326, "approved": 45, "pending": 67,"more": [
+        
+      ] },
+    { "id": 4, "name": "Student Affairs", "total": 5626, "approved": 86, "pending": 26,"more": [
+        
+      ] }
+  ]
+  

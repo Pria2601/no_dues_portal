@@ -1,0 +1,6 @@
+[
+    { "name": "Mechanical Department", "approved": 86, "total": 2056, "pending": 23 },
+    { "name": "Chemical Science Department", "approved": 86, "total": 5626, "pending": 26 },
+    { "name": "Computer Science Department", "approved": 45, "total": 6326, "pending": 67 },
+    { "name": "DSAI Department", "approved": 86, "total": 5626, "pending": 26 }
+  ]
