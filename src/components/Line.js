@@ -24,12 +24,12 @@ const ProgressBar = ({ sections, amt }) => {
   };
   
   // Example Usage
-  const Line = ({cost}) => {
+  const Line = ({cost,p1,p2,p3,p4}) => {
     const sections = [
-      { color: "#2364AA", percentage: 20 }, // Hostel Affairs (Dark Blue)
-      { color: "#3DA5D9", percentage: 25 }, // Students Affairs (Blue)
-      { color: "#89E0FE", percentage: 30 }, // Computer Centre (Light Blue)
-      { color: "#2A3F54", percentage: 25 }, // Mechanical Workshop (Teal)
+      { color: "#2364AA", percentage: p1}, // Hostel Affairs (Dark Blue)
+      { color: "#3DA5D9", percentage: p2 }, // Students Affairs (Blue)
+      { color: "#89E0FE", percentage: p3 }, // Computer Centre (Light Blue)
+      { color: "#2A3F54", percentage: p4 }, // Mechanical Workshop (Teal)
     ];
   
     return (
